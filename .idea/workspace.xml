@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅" />
+    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/2023-10-01__7_24__________.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/2023-10-01__7_24__________.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/2023-10-01__7_25__________.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/2023-10-01__7_25__________.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
