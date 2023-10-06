@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅" />
+    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +56,7 @@
       <workItem from="1695490715990" duration="647000" />
       <workItem from="1695892963578" duration="641000" />
       <workItem from="1696155718182" duration="410000" />
+      <workItem from="1696607063796" duration="1360000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 세팅">
       <created>1695480942229</created>
