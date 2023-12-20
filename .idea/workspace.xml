@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅" />
+    <list default="true" id="d728728e-4faa-49e8-abec-97dfd5894002" name="변경" comment="feat: 세팅">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +60,7 @@
       <workItem from="1697877939171" duration="604000" />
       <workItem from="1699092705039" duration="301000" />
       <workItem from="1702050641263" duration="2920000" />
-      <workItem from="1702439140582" duration="1812000" />
+      <workItem from="1702439140582" duration="2425000" />
     </task>
     <task id="LOCAL-00001" summary="feat: 세팅">
       <created>1695480942229</created>
@@ -116,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702525184917</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: 세팅">
+      <created>1702534130421</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702534130421</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
