@@ -1,15 +1,11 @@
 class Solution {
     public String solution(int[] numLog) {
-        String answer = "";
-        for(int i=1; i<numLog.length; i++){
-            int j = numLog[i-1] - numLog[i];
-            switch(j){
-                case -1 : answer+='w'; break;
-                case 1 : answer+='s'; break;
-                case -10 : answer+='d'; break;
-                case 10 : answer+='a'; break;
-            }
+        StringBuilder answer = new StringBuilder();
+        
+        for(int i = 1; i < numLog.length; i++){
+            answer.append(numLog[i] - numLog[i-1] == 1 ? "w" : numLog[i] - numLog[i-1] == -1 ? "s" : numLog[i] - numLog[i-1] == 10 ? "d" : numLog[i] - numLog[i-1] == -10 ? "a" : "");
         }
-        return answer;
+        
+        return answer.toString();
     }
 }
