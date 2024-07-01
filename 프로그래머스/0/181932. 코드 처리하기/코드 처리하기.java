@@ -11,7 +11,7 @@ class Solution {
                 if (code.charAt(i) == '1') {
                     mode = 1;
                 }
-            } else { // mode == 1
+            } else {
                 if (i % 2 == 1 && code.charAt(i) != '1') {
                     ret.append(code.charAt(i));
                 }
