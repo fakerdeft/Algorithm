@@ -1,35 +1,15 @@
 import java.util.ArrayList;
-import java.util.List;
 
 class Solution {
-    public static long[] solution(int l, int r) {
-        List<Long> result = new ArrayList<>();
-        
-        for (int i = l; i <= r; i++) {
-            if (isZeroOrFive(i)) {
-                result.add((long) i);
-            }
+    public int[] solution(int l, int r) {
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (int i = 1; i < 64; i++) {
+            int num = Integer.parseInt(Integer.toBinaryString(i)) * 5;
+            if (l <= num && num <= r)
+                list.add(num);
         }
-        
-        if (result.isEmpty()) {
-            return new long[] { -1 };
-        }
-        
-        long[] resultArray = new long[result.size()];
-        for (int i = 0; i < result.size(); i++) {
-            resultArray[i] = result.get(i);
-        }
-        
-        return resultArray;
-    }
-    
-    private static boolean isZeroOrFive(int number) {
-        String str = Integer.toString(number);
-        for (char c : str.toCharArray()) {
-            if (c != '0' && c != '5') {
-                return false;
-            }
-        }
-        return true;
+
+        return list.isEmpty() ? new int[] { -1 } : list.stream().mapToInt(i -> i).toArray();
     }
 }
