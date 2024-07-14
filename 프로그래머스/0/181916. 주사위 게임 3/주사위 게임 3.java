@@ -1,44 +1,28 @@
+import java.util.Arrays;
+
 class Solution {
     public int solution(int a, int b, int c, int d) {
-        if(a == b && b == c && c == d){
-            return 1111 * a;
+        int[] dice = { a, b, c, d };
+        Arrays.sort(dice);
+
+        if (dice[0] == dice[3]) {
+            return 1111 * dice[3];
         }
-        if((a == b && b == c) || (a == b && b == d) || (a == c && c == d) || (b == c && c == d)){
-            if(a == b && b == c){
-                return (10 * a + d) * (10 * a + d);
-            }
-            if(a == b && b == d){
-                return (10 * a + c) * (10 * a + c);
-            }
-            if(a == c && c == d){
-                return (10 * a + b) * (10 * a + b);
-            }
-            return (10 * b + a) * (10 * b + a);
+        if (dice[0] == dice[2] || dice[1] == dice[3]) {
+            return (int) Math.pow(dice[1] * 10 + (dice[0] + dice[3] - dice[1]), 2);
         }
-        if((a == b && c == d) || (a == c && b == d) || (a == d && b == c)){
-            if(a == b && c == d){
-                return (a + c) * (a - c);
-            }
-            return a > b ? (a + b) * (a - b) : (a + b) * (b - a);
+        if (dice[0] == dice[1] && dice[2] == dice[3]) {
+            return (dice[0] + dice[3]) * (dice[3] - dice[0]);
         }
-        if((a == b && c != d) || (a == c && b != d) || (a == d && b != c) || (b == c && a != d) || (b == d && a != c) || (c == d && a != b)){
-            if(c == d){
-                return a * b;
-            }
-            if(b == d){
-                return a * c;
-            }
-            if(b == c){
-                return a * d;
-            }
-            if(a == d){
-                return b * c;
-            }
-            if(a == c){
-                return b * d;
-            }
-            return c * d;
+        if (dice[0] == dice[1]) {
+            return dice[2] * dice[3];
         }
-        return a < b && a < c && a < d ? a : b < c && b < d ? b : c < d ? c : d;
+        if (dice[1] == dice[2]) {
+            return dice[0] * dice[3];
+        }
+        if (dice[2] == dice[3]) {
+            return dice[0] * dice[1];
+        }
+        return dice[0];
     }
 }
