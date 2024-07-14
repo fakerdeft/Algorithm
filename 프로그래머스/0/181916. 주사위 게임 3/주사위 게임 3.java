@@ -39,6 +39,6 @@ class Solution {
             }
             return c * d;
         }
-        return a < b && a < c && a < d ? a : b < a && b < c && b < d ? b : c < a && c < b && c < d ? c : d;
+        return a < b && a < c && a < d ? a : b < c && b < d ? b : c < d ? c : d;
     }
 }
