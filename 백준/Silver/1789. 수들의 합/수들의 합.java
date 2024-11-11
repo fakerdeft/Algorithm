@@ -5,13 +5,12 @@ class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long S = Long.parseLong(br.readLine());
-        int N = 0;
-        long sum = 0;
-        for(int i = 1; ; i++){
-            if (sum > S) break;
-            sum += i;
-            N++;
+        int N = 1;
+        while(true){
+            if(S < N) break;
+            S -= N;
+			N++;
         }
-        System.out.print(N-1);
+        System.out.print(--N);
     }
 }
