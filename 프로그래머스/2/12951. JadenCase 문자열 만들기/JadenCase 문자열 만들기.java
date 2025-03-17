@@ -2,26 +2,14 @@ import java.util.*;
 
 class Solution {
     public String solution(String s) {
-        StringBuilder answer = new StringBuilder();
-
-        s = s.toLowerCase();
+        String answer = "";
+        boolean isFirst = true;
         
-        boolean isFirstChar = true;
-        
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            
-            if (c == ' ') {
-                answer.append(c);
-                isFirstChar = true;
-            } else if (isFirstChar) {
-                answer.append(Character.toUpperCase(c));
-                isFirstChar = false;
-            } else {
-                answer.append(c);
-            }
+        for(String data : s.toLowerCase().split("")){
+            answer += isFirst ? data.toUpperCase() : data;
+            isFirst = data.equals(" ") ? true : false;
         }
         
-        return answer.toString();
+        return answer;
     }
 }
