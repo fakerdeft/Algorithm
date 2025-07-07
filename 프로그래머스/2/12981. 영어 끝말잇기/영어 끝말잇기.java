@@ -22,10 +22,6 @@ class Solution {
     }
     
     private boolean isInvalid(String currentWord, String[] words, int index, Set<String> usedWords) {
-        if (currentWord.length() <= 1) {
-            return true;
-        }
-        
         if (usedWords.contains(currentWord)) {
             return true;
         }
