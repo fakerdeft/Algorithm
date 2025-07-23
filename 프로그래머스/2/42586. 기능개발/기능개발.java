@@ -8,20 +8,16 @@ class Solution {
         for (int i = 0; i < progresses.length; i++) {
             int remainingWork = 100 - progresses[i];
             int daysNeeded = (int) Math.ceil((double) remainingWork / speeds[i]);
+            
+            if (!queue.isEmpty() && queue.peek() < daysNeeded) {
+                result.add(queue.size());
+                queue.clear();
+            }
+
             queue.offer(daysNeeded);
         }
         
-        while (!queue.isEmpty()) {
-            int firstTask = queue.poll();
-            int deployCount = 1;
-            
-            while (!queue.isEmpty() && queue.peek() <= firstTask) {
-                queue.poll();
-                deployCount++;
-            }
-            
-            result.add(deployCount);
-        }
+        result.add(queue.size());
         
         return result.stream().mapToInt(i -> i).toArray();
     }
