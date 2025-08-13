@@ -2,15 +2,11 @@ import java.util.*;
 
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        // 도난 0, 가능 1, 여벌 2
-        int[] students = new int[n+1];
-        
-        for (int i = 1; i <= n; i++) {
-            students[i] = 1;
-        }
+        int[] students = new int[n+2];
+        int answer = n;
         
         for(int r : reserve){
-            students[r] = 2;
+            students[r]++;
         }
         
         for(int l : lost){
@@ -18,22 +14,16 @@ class Solution {
         }
         
         for(int i = 1; i <= n; i++){
-            if(students[i] == 0){
-                if(i > 1 && students[i-1] == 2){
+            if(students[i] == -1){
+                if(students[i-1] == 1){
                     students[i-1]--;
                     students[i]++;
                 }
-                else if(i < n && students[i+1] == 2){
+                else if(students[i+1] == 1){
                     students[i]++;
                     students[i+1]--;
                 }
-            }
-        }
-        
-        int answer = 0;
-        for(int student : students){
-            if(student >= 1){
-                answer++;
+                else answer--;
             }
         }
         
