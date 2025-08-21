@@ -17,20 +17,19 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
             // i번째 문자까지 처리한 후, 연속된 A 구간을 건너뛰는 경우
-            int nextPos = i + 1;
+            int next = i + 1;
             
             // 연속된 A 구간의 끝 찾기
-            while (nextPos < n && name.charAt(nextPos) == 'A') {
-                nextPos++;
+            while (next < n && name.charAt(next) == 'A') {
+                next++;
             }
             
             // 3가지 이동 전략 중 최소값 선택
             // 전략 1: 오른쪽으로만 이동 (기본값)
-            // 전략 2: 0→i→0→(n-1)→...→nextPos (왼쪽 끝에서 시작)
-            // 전략 3: 0→(n-1)→...→nextPos→0→i (오른쪽 끝에서 시작)
-            
-            int strategy2 = i * 2 + (n - nextPos);     // 오른쪽 갔다가 왼쪽으로
-            int strategy3 = (n - nextPos) * 2 + i;     // 왼쪽 갔다가 오른쪽으로
+            // 전략 2: 0→i→0→(n-1)→...→next (오른쪽 갔다가 왼쪽으로)
+            // 전략 3: 0→(n-1)→...→next→0→i (왼쪽 갔다가 오른쪽으로)
+            int strategy2 = i * 2 + (n - next);
+            int strategy3 = (n - next) * 2 + i;
             
             minMove = Math.min(minMove, Math.min(strategy2, strategy3));
         }
