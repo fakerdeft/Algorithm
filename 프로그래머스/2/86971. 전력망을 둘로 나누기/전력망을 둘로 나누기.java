@@ -1,45 +1,38 @@
 import java.util.*;
 
 class Solution {
+    int N, answer;
+    int[][] map;
+    int[] vst;
+    
     public int solution(int n, int[][] wires) {
-        int answer = n;
+        N = n;
+        answer = n;
+        map = new int[n+1][n+1];
+        vst = new int[n+1];
         
-        for (int i = 0; i < wires.length; i++) {
-            // i번째 간선을 제외한 그래프 구성
-            List<List<Integer>> graph = new ArrayList<>();
-            for (int j = 0; j <= n; j++) {
-                graph.add(new ArrayList<>());
-            }
-            
-            for (int j = 0; j < wires.length; j++) {
-                if (i == j) continue;  // i번째 간선 제외
-                int a = wires[j][0];
-                int b = wires[j][1];
-                graph.get(a).add(b);
-                graph.get(b).add(a);
-            }
-            
-            // DFS로 첫 번째 컴포넌트 크기 구하기
-            boolean[] visited = new boolean[n + 1];
-            int component1 = dfs(graph, 1, visited);
-            int component2 = n - component1;
-            
-            answer = Math.min(answer, Math.abs(component1 - component2));
+        for(int[] wire : wires){
+            int a = wire[0], b = wire[1];
+            map[a][b] = map[b][a] = 1;
         }
+        
+        dfs(1);
         
         return answer;
     }
     
-    private int dfs(List<List<Integer>> graph, int node, boolean[] visited) {
-        visited[node] = true;
-        int count = 1;
+    private int dfs(int node) {
+        int child = 1;
+        vst[node] = 1;
         
-        for (int neighbor : graph.get(node)) {
-            if (!visited[neighbor]) {
-                count += dfs(graph, neighbor, visited);
+        for(int i = 1; i <= N; i++){
+            if(vst[i] == 0 && map[node][i] == 1){
+                child += dfs(i);
             }
         }
         
-        return count;
+        answer = Math.min(answer, Math.abs(child - (N - child)));
+            
+        return child;
     }
 }
