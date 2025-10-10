@@ -7,7 +7,9 @@ class Solution {
         }
 
         for (int i = 0; i < n; i++) {
-            result[i] = String.format("%" + n + "s", result[i]);
+            String s = "%" + n + "s";
+            
+            result[i] = String.format(s, result[i]);
             result[i] = result[i].replaceAll("1", "#");
             result[i] = result[i].replaceAll("0", " ");
         }
