@@ -1,15 +1,19 @@
-import java.util.*;
-
 class Solution {
     public String solution(String s) {
         String answer = "";
-        boolean isFirst = true;
         
-        for(String data : s.toLowerCase().split("")){
-            answer += isFirst ? data.toUpperCase() : data;
-            isFirst = data.equals(" ") ? true : false;
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            
+            if(i == 0 || (i != 0 && s.charAt(i-1) == ' ')){
+                c = Character.toUpperCase(c);
+            } else {
+                c = Character.toLowerCase(c);
+            }
+            
+            answer += c;
         }
-        
+
         return answer;
     }
 }
