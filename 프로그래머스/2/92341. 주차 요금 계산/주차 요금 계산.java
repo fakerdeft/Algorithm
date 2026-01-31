@@ -9,9 +9,8 @@ class Solution {
         int partTime = fees[2];
         int partPrice = fees[3];
         
-        // 주차 시간, 출차 상태, 누적 주차 시간, 차 번호 세트
+        // 주차 시간, 누적 주차 시간, 차 번호 세트
         HashMap<Integer, Integer> timeMap = new HashMap<>();
-        HashMap<Integer, String> statusMap = new HashMap<>();
         HashMap<Integer, Integer> stackMap = new HashMap<>();
         TreeSet<Integer> carSet = new TreeSet<>();
         
@@ -19,45 +18,37 @@ class Solution {
             String[] parts = record.split(" ");
             int checkTime = parseMinutes(parts[0]);
             int carNum = Integer.parseInt(parts[1]);
-            String newStatus = parts[2];
-            boolean exists = timeMap.containsKey(carNum);
+            String status = parts[2];
             
-            if(exists == false){
+            carSet.add(carNum);
+            
+            if(status.equals("IN")){
                 timeMap.put(carNum, checkTime);
-                stackMap.put(carNum, 0);
-                carSet.add(carNum);
             } else {
-                if(statusMap.get(carNum).equals("IN")){
-                    stackMap.put(carNum, stackMap.getOrDefault(carNum, 0) + checkTime - timeMap.get(carNum));
-                }
-                
-                if(statusMap.get(carNum).equals("OUT")){
-                    timeMap.put(carNum, checkTime);
-                }
+                int inTime = timeMap.remove(carNum);
+                stackMap.put(carNum, stackMap.getOrDefault(carNum, 0) + checkTime - inTime);
             }
-            
-            statusMap.put(carNum, newStatus);
+        }
+        
+        // 아직 안 나간 차 계산
+        int lastTime = parseMinutes("23:59");
+        for(Integer carNum : timeMap.keySet()){
+            int inTime = timeMap.get(carNum);
+            stackMap.put(carNum, stackMap.getOrDefault(carNum, 0) + lastTime - inTime);
         }
         
         // 요금 계산
         int[] answer = new int[carSet.size()];
         int i = 0;
         for(Integer carNum : carSet){
-            int price = 0;
+            int price = defaultPrice;
             int stackTime = stackMap.get(carNum);
             
-            if(statusMap.get(carNum).equals("IN")){
-                stackTime += parseMinutes("23:59") - timeMap.get(carNum);
+            if(stackTime > defaultTime){
+                price += Math.ceil((double)(stackTime - defaultTime) / partTime) * partPrice;
             }
             
-            if(stackTime <= defaultTime){
-                price += defaultPrice;
-            } else {
-                price += defaultPrice + Math.ceil((double)(stackTime - defaultTime) / partTime) * partPrice;
-            }
-            
-            answer[i] = price;
-            i++;
+            answer[i++] = price;
         }
         
         return answer;
