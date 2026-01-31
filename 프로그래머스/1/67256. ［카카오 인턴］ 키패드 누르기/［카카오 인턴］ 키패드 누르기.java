@@ -2,95 +2,55 @@ import java.util.*;
 
 class Solution {
     public String solution(int[] numbers, String hand) {
-        String answer = "";
-        String h = hand.equals("left") ? "L" : "R";
-        Map<String, int[]> map = new HashMap<>();
-        map.put("L", new int[]{1, 4});
-        map.put("R", new int[]{3, 4});
+        StringBuilder sb = new StringBuilder();
+        
+        int[][] pos = {
+            {3, 1}, // 0
+            {0, 0}, {0, 1}, {0, 2}, // 1, 2, 3
+            {1, 0}, {1, 1}, {1, 2}, // 4, 5, 6
+            {2, 0}, {2, 1}, {2, 2}, // 7, 8, 9
+            {3, 0}, {3, 2} // *, #
+        };
+        int left = 10;
+        int right = 11;
         
         for(int num : numbers){
-            int[] lPos = map.get("L");
-            int[] rPos = map.get("R");
-            
             if(num == 1 || num == 4 || num == 7){
-                answer += "L";
-                map.put("L", new int[]{1, (num / 3) + 1});
+                sb.append("L");
+                left = num;
             }
             
-            if(num == 3 || num == 6 || num == 9){
-                answer += "R";
-                map.put("R", new int[]{3, (num / 3)});
+            else if(num == 3 || num == 6 || num == 9){
+                sb.append("R");
+                right = num;
             }
             
-            if(num == 2){
-                int lD = getDistance(2, 1, lPos[0], lPos[1]);
-                int rD = getDistance(2, 1, rPos[0], rPos[1]);
-                
-                if(lD < rD){
-                    answer += "L";
-                    map.put("L", new int[]{2, 1});
-                } else if (lD > rD){
-                    answer += "R";
-                    map.put("R", new int[]{2, 1});
+            else {
+                int ld = getDist(pos[num][0], pos[num][1], pos[left][0], pos[left][1]);
+                int rd = getDist(pos[num][0], pos[num][1], pos[right][0], pos[right][1]);
+
+                if(ld < rd){
+                    sb.append("L");
+                    left = num;
+                } else if(ld > rd){
+                    sb.append("R");
+                    right = num;
                 } else {
-                    answer += h;
-                    map.put(h, new int[]{2, 1});
-                }
-            }
-            
-            if(num == 5){
-                int lD = getDistance(2, 2, lPos[0], lPos[1]);
-                int rD = getDistance(2, 2, rPos[0], rPos[1]);
-                
-                if(lD < rD){
-                    answer += "L";
-                    map.put("L", new int[]{2, 2});
-                } else if (lD > rD){
-                    answer += "R";
-                    map.put("R", new int[]{2, 2});
-                } else {
-                    answer += h;
-                    map.put(h, new int[]{2, 2});
-                }
-            }
-            
-            if(num == 8){
-                int lD = getDistance(2, 3, lPos[0], lPos[1]);
-                int rD = getDistance(2, 3, rPos[0], rPos[1]);
-                
-                if(lD < rD){
-                    answer += "L";
-                    map.put("L", new int[]{2, 3});
-                } else if (lD > rD){
-                    answer += "R";
-                    map.put("R", new int[]{2, 3});
-                } else {
-                    answer += h;
-                    map.put(h, new int[]{2, 3});
-                }
-            }
-            
-            if(num == 0){
-                int lD = getDistance(2, 4, lPos[0], lPos[1]);
-                int rD = getDistance(2, 4, rPos[0], rPos[1]);
-                
-                if(lD < rD){
-                    answer += "L";
-                    map.put("L", new int[]{2, 4});
-                } else if (lD > rD){
-                    answer += "R";
-                    map.put("R", new int[]{2, 4});
-                } else {
-                    answer += h;
-                    map.put(h, new int[]{2, 4});
+                    if(hand.equals("left")){
+                        sb.append("L");
+                        left = num;
+                    } else {
+                        sb.append("R");
+                        right = num;
+                    }
                 }
             }
         }
         
-        return answer;
+        return sb.toString();
     }
     
-    private int getDistance(int x1, int y1, int x2, int y2){
-        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    private int getDist(int r1, int c1, int r2, int c2){
+        return Math.abs(r1 - r2) + Math.abs(c1 - c2);
     }
 }
